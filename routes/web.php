@@ -2,6 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\ClientController;
+use App\Http\Controllers\CollectionController;
+use App\Http\Controllers\ComicController;
+use App\Http\Controllers\PurcharseController;
+use App\Http\Controllers\TagController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,3 +22,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+//Rutas para obtener comics
+Route::get('/comics', [ComicController::class, 'index']);
