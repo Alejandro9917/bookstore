@@ -17,11 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('author');
-            $table->string('price');
             $table->string('description');
             $table->string('publisher');
-            $table->string('type');
-            $table->string('edition');
             $table->timestamps();
         });
     }

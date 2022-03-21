@@ -20,6 +20,9 @@ return new class extends Migration
             $table->string('name');  
             $table->string('image');   
             $table->string('state', 1); 
+            $table->string('price');
+            $table->string('type');
+            $table->string('edition');
             $table->timestamps();  
 
             $table->foreign('tag_id')->references('id')->on('tags');

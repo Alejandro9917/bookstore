@@ -1,0 +1,248 @@
+
+body {
+    min-height: 75rem;
+    padding-top: 4.5rem;
+  }
+
+#nav {
+    background-color: #C41E3D;
+}
+
+#booknav {
+    color: white;
+}
+
+#titlenav {
+    font-family: Montserrat-regular;
+    
+    font-size: 36px;
+   
+}
+
+.navbar-nav .nav-item .nav-link {
+    font-family: Montserrat-regular;
+    font-size: 20px;
+
+}
+
+.navbar-nav .nav-item .nav-link {
+    color: white;
+}
+
+.navbar-nav .nav-item .nav-link:hover {
+    color: #F1DEDE;
+}
+.nav-item .nav-link .shop-cart{
+    border-radius: 50%;
+}
+.nav-item .nav-link .user-image{
+    border-radius: 50%;
+}
+.d-flex .btn .lupaimg {
+    border-radius: 30%;
+}
+
+
+input #txtbuscar {
+    border: 0px;
+    width: 5px;
+    height: 5px;
+    position: relative;
+    background: transparent;
+    outline: none;
+    bottom: 4px;
+    padding: 2px;
+}
+input #imgbuscar{
+    background: transparent;
+    width: 20px;
+    border: 0px;
+    position: relative;
+    top: 1px;
+    margin-left: auto;
+    
+}
+
+.navbar-light .navbar-toggler {
+    background-color: #F1DEDE;
+    border-color: #C41E3D;
+}
+
+.navbar-light .navbar-toggler  .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(196, 30, 61, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+  }
+
+.navbar-nav .nav-item {
+    color: white;
+}
+
+/*COROUSEL*/
+.carousel-control-prev .carousel-control-prev-icon 
+{
+   background-color:#C41E3D;
+}
+
+.carousel-control-next .carousel-control-next-icon {
+    background-color:#C41E3D;
+}
+
+.carousel-inner img
+{
+    width: 50%;
+}
+
+.carousel-indicators
+{
+    background-color:  #C41E3D;
+}
+
+/*FIN DE CAROUSEL*/
+
+/*CONTAINER RELLENO*/
+.Container-rell
+{
+    left: 0px;
+    width: 100%;
+    height: 100px;
+    line-height: 20px;
+    background-color:#F1DEDE;
+    text-align: center;
+    border: 1px solid rgba(241, 222, 222, 100);
+}
+/*FIN CONTAINER RELLENO*/
+
+/*DIV DE PRODUCTOS DESTACADOS Y RECIENTES*/
+.Prodd
+{
+    background-color: #C41E3D;
+    color:#FFF;
+    height: 50px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+}
+
+.ProdR
+{
+    background-color: #C41E3D;
+    color:#FFF;
+    height: 50px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+
+#Sub1, #Sub2
+{
+    padding-top: 15px;
+ /*padding: 10px 10px 10px 10px;*/
+ font-family: Montserrat-regular;
+}
+
+.container-Des 
+{
+    background-color: #fff;
+    position: relative;
+    width: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+}
+
+.container-Des  .card
+{
+  position: relative;
+  max-width: 400px;
+  height: 380px;
+  background-color: #fff;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-bottom: 30px;
+  padding-top: 5px;
+  margin-bottom: 20px;
+  margin-left: 50px;
+  margin-right:50px;
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.container-Des  .card .imgBox
+{
+  position: relative;
+  display: block;
+  width: 185px;
+  height: 180px;
+}
+
+.container-Des .card 
+{
+width: 180px;
+}
+
+.card:hover
+{
+box-shadow: 5px 5px 20px rgba(0,0,0,0.4);
+transform: translateY(-3%);
+}
+
+.card
+{
+    width: 200px;
+}
+
+.imgBox img
+{
+    width: 170px;
+    height: 270px;
+}
+
+.Contenido
+{
+  margin-top: 10px;
+  margin-bottom: 5px;
+  font-family: Montserrat-regular;
+  
+}
+
+.bn
+{
+    background-color: #F1DEDE;
+    color: #C41E3D;
+}
+
+.bn:hover
+{
+    color: #7D1128;
+}
+
+.bn img
+{
+width: 20px;
+height: 20px;
+}
+
+.bu
+{
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+
+/*FOOTER*/
+footer{
+    width: 100%;
+    height: 40px;
+    background-color: #7D1128;
+    position: relative;
+    z-index: 3;
+    bottom: 0;
+}
+
+.container-footer{
+    text-align: center;
+    line-height: 40px;
+    color: white;
+    font-family: Montserrat-regular;
+}
