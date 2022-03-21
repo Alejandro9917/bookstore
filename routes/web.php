@@ -19,9 +19,14 @@ use App\Http\Controllers\TagController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-//Rutas para obtener comics
+//Rutas para api de comics
 Route::get('/comics', [ComicController::class, 'index']);
+Route::get('/comics/recent', [ComicController::class, 'recentCommics']);
+Route::get('/comics/popular', [ComicController::class, 'popularCommics']);
+
+//Rutas para retornar las views
+Route::view('/', 'home');
+Route::view('/products', 'products');
+Route::view('/login', 'login');
+Route::view('/register', 'register');
+Route::view('/shopcart', 'shopcart');
