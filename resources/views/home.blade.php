@@ -1,121 +1,215 @@
-@extends('navbar')
+@extends('layouts.app')
 
 @section('content')
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-      <meta charset="UTF-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-      <link rel="stylesheet" href="/css/estilosindex.css">
-      <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-      <title>Inicio-Bookstore</title>
-    </head>
-  
-  <body>
-      <!--Barra de navegación-->
-      
-    <!--A partir de acá comienza el cuerpo de la página-->
-    <main>
-        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-            </div>
-            <div class="carousel-inner">
-                <div class="carousel-item active ">
-                    <img src="/img/Aviso.png"  alt="Anuncio1" class="img-fluid d-block mx-auto" >
-                </div>
-                <div class="carousel-item">
-                    <img src="/img/anuncio2.jpg" alt="Anuncio2" class="img-fluid d-block mx-auto">
-                </div>
-                <div class="carousel-item">
-                    <img src="/img/Aviso.png"  alt="Anuncio3" class="img-fluid d-block mx-auto"> 
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-4 offset-md-11">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#comicForm">Ingresar Comic</button>
+        </div>
+        <div class="col-md-10 mt-1">
+            <div class="card">
+                <div class="card-header">{{ __('Dashboard') }}</div>
+
+                <div class="card-body">
+                    @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+                    <table class="table" id="table">
+                        <thead>
+                            <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Autor</th>
+                            <th scope="col">Editora</th>
+                            <th scope="col">Tag</th>
+                            <th scope="col">Actualizado el</th>
+                            <th scope="col">Opciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table_comics">
+                        </tbody>
+                    </table>
                 </div>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true" ></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
         </div>
-        
-        <!--Espacio de relleno-->
-        <div class="Container-rell">
-        </div>
+    </div>
+</div>
 
-        <!--Productos Destacados-->
-        <div class="Prodd text-center">
-            <p id="Sub1"><b>PRODUCTOS DESTACADOS</b></p>
-        </div>
+<script type="text/javascript">
+    $(document).ready(function() {
+        getComics();
+        getCollections();
+        getTags();
+    });
 
-        <div class="container-Des" id="comics_destacados">
-        </div>
-
-        <!--Productos Recientes-->
-        <div class="ProdR text-center">
-            <p id="Sub2"><b>PRODUCTOS RECIENTES</b></p>
-        </div>
-
-        <div class="container-Des" id="comics_recientes">
-        </div>
-
-    <script type="text/javascript">
-        $(document).ready(function() {
+    $("#send").click(function(){
+        var id = $("#send").attr('data-whatever');
+        if(id == "null"){
+            send();
             getComics();
-            popularComics();
+            getCollections();
+            getTags();
+            clear();
+        }
+        else{
+            //update(id);
+        }
+        var table = $("#table tbody").empty();
+    });
+    
+    //Función para obtener los datos de las comics
+    function getComics(){
+        $.ajax({
+            url: "http://localhost:8000/comics",
+            method: "GET"
+        }).done(function(res){
+            var response = res;
+            printComics(response);
         });
-        
-        //Función para obtener los datos de las comics
-        function getComics(){
-            $.ajax({
-                url: "http://localhost:8000/comics/popular",
-                method: "GET"
-            }).done(function(res){
+    }
+
+    function getCollections(){
+        $.ajax({
+            url: "http://localhost:8000/collections",
+            method: "GET"
+        }).done(function(res){
+            var response = res;
+            printCollections(response);
+        });
+    }
+
+    function getTags(){
+        $.ajax({
+            url: "http://localhost:8000/tags",
+            method: "GET"
+        }).done(function(res){
+            var response = res;
+            printTags(response);
+        });
+    }
+
+    //Función para pintar las tarjetas con los datos
+    function printComics(comics){
+        comics.map(function(comic){
+            $("#table_comics").append(
+                "<tr>" +
+                    "<td>" + comic.id + "</td>" +
+                    "<td>" + comic.collection.name + ": " + comic.name + "</td>" +
+                    "<td>" + comic.collection.author + "</td>" +
+                    "<td>" + comic.collection.publisher + "</td>" +
+                    "<td>" + comic.tag.tag + "</td>" +
+                    "<td>" + comic.updated_at + "</td>" +
+                    "<td><a href='javascript:void(0)' type='button' class=' btn btn-danger'>Delete</a></td>" +
+                "</tr>"
+            );
+        });
+    }
+
+    function send(){
+        //Se crea un objeto ajax
+        $.ajax({            
+            url: "{{ url('/comics/store') }}",
+            method: 'POST',
+            data: $("#form_comic").serialize(),
+            success: function(res){
                 var response = res;
-                printComics(response, "comics_destacados");
-            });
-        }
-
-        //Función para comics populares
-        function popularComics(){
-            $.ajax({
-                url: "http://localhost:8000/comics/recent",
-                method: "GET"
-            }).done(function(res){
+            },
+            error: function(res){
                 var response = res;
-                printComics(response, "comics_recientes");
-            });
-        }
+                //setErrors(response.responseJSON.errors);
+            }
+        });
+    }
 
-        //Función para pintar las tarjetas con los datos
-        function printComics(comics, space){
-            comics.map(function(comic){
-                $("#" + space).append(
-                    "<div class='card'>" + 
-                        "<div class='mx auto imgBox'>" +
-                            "<img src='" + comic.image +"' class='card-img-top'>" +
-                            "<div class='Contenido'>" +
-                            "<p class='text-center'>" + comic.collection.name + ": " + comic.name +"</p>" +
-                                "<div class='bu'><button type='button' class='btn bn'><img class='d-inline-block' src='/img/shopcart2.png' width='40px' height='40px' alt='carrito'> Agregar a carrito</button></div>" +
-                            "</div>" +
-                        "</div>" +
-                    "</div>"
-                );
-            });
-        }
-    </script>  
+    function deleteComic(id){
+        $.ajax({
+            url: ''
+        });
+    }
 
-    @include('footer')
-</body>
-</html>
-     
+    function printCollections(collections){
+        collections.map(function(collection){
+            $("#collection_id").append(
+                "<option value='" + collection.id + "'>" + collection.name + "</option>"
+            );
+        });
+    }
+
+    function printTags(tags){
+        tags.map(function(tag){
+            $("#tag_id").append(
+                "<option value='" + tag.id + "'>" + tag.tag + "</option>"
+            );
+        });
+    }
+
+    function clear(){
+        $(':input','#form_comic')
+        .not(':button, :submit, :reset, :hidden')
+        .val('')
+        .prop('checked', false)
+        .prop('selected', false);
+    }
+</script> 
+
 @endsection
 
+<div class="modal fade" id="comicForm" tabindex="-1" aria-labelledby="comicFormLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="comicFormLabel">Formulario de Comic</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="" id="form_comic">
+        {{ csrf_field() }}
+            <label for="basic-url" class="form-label">Seleccione colección</label>
+            <div class="input-group mb-3">
+                <select class="form-select" id="collection_id" name="collection_id" aria-label="Default select example">
+                    <option selected>Seleccione una opción</option>
+                </select>
+            </div>
 
+            <label for="basic-url" class="form-label">Seleccione tag</label>
+            <div class="input-group mb-3">
+                <select class="form-select" id="tag_id" name="tag_id" aria-label="Default select example">
+                    <option selected>Seleccione una opción</option>
+                </select>
+            </div>
+
+            <label for="basic-url" class="form-label">Ingrese nombre del tomo</label>
+            <div class="input-group mb-3">
+                <input id="name" name="name" type="text" class="form-control" placeholder="Nombre del tomo" aria-label="Nombre del tomo" aria-describedby="name">
+            </div>
+
+            <label for="basic-url" class="form-label">Ingrese el precio del comic</label>
+            <div class="input-group mb-3">
+                <input id="price" name="price" type="text" class="form-control" placeholder="Precio del comic" aria-label="Precio del comic" aria-describedby="image">
+            </div>
+
+            <label for="basic-url" class="form-label">Ingrese el tipo comic</label>
+            <div class="input-group mb-3">
+                <input id="type" name="type" type="text" class="form-control" placeholder="Tipo del comic" aria-label="Tipo del comic" aria-describedby="image">
+            </div>
+
+            <label for="basic-url" class="form-label">Ingrese la edición del comic</label>
+            <div class="input-group mb-3">
+                <input id="edition" name="edition" type="text" class="form-control" placeholder="Edición del comic" aria-label="Edición del comic" aria-describedby="image">
+            </div>
+
+            <label for="basic-url" class="form-label">Ingrese la imagen del comic</label>
+            <div class="input-group mb-3">
+                <input id="image" name="image" type="text" class="form-control" placeholder="Imagen del tomo" aria-label="Imagen del tomo" aria-describedby="image">
+            </div>
+            <a id="send" type="submit" class="btn btn-success float-right" data-whatever="null"><i class="fas fa-cloud-upload-alt"></i>Guardar</a>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
