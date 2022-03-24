@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\ComicController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PurcharseController;
 use App\Http\Controllers\TagController;
 
@@ -23,10 +24,25 @@ use App\Http\Controllers\TagController;
 Route::get('/comics', [ComicController::class, 'index']);
 Route::get('/comics/recent', [ComicController::class, 'recentCommics']);
 Route::get('/comics/popular', [ComicController::class, 'popularCommics']);
+//Rutas con middleware
+Route::post('/comics/store', [ComicController::class, 'store'])->name('comic.store');
+
+//Rutas para api de tags
+Route::get('/tags', [TagController::class, 'index']);
+
+//Rutas para api de collections
+Route::get('/collections', [CollectionController::class, 'index']);
 
 //Rutas para retornar las views
-Route::view('/', 'home');
+Route::view('/', 'index');
 Route::view('/products', 'products');
 Route::view('/login', 'login');
 Route::view('/register', 'register');
 Route::view('/shopcart', 'shopcart');
+
+//Rutas para retornar las views de admin
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::view('/admin/tags', 'admin/tags')->name('admin.tags');
+Route::view('/admin/collections', 'admin/collections')->name('admin.collections');

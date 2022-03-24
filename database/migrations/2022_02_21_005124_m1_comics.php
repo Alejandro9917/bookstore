@@ -19,7 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('collection_id');
             $table->string('name');  
             $table->string('image');   
-            $table->string('state', 1); 
+            $table->string('state', 1)->default('1'); 
             $table->string('price');
             $table->string('type');
             $table->string('edition');
