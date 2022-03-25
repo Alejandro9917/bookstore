@@ -22,6 +22,7 @@ use App\Http\Controllers\TagController;
 
 //Rutas para api de comics
 Route::get('/comics', [ComicController::class, 'index']);
+Route::get('/comic/{id}', [ComicController::class, 'getComic']);
 Route::get('/comics/recent', [ComicController::class, 'recentCommics']);
 Route::get('/comics/popular', [ComicController::class, 'popularCommics']);
 //Rutas con middleware
@@ -46,3 +47,9 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::view('/admin/tags', 'admin/tags')->name('admin.tags');
 Route::view('/admin/collections', 'admin/collections')->name('admin.collections');
+
+//Rutas para retornar las vistas del cliente
+Route::view('/client/login', 'login');
+Route::get('/client/logout', [ClientController::class, 'logout'])->name('client.logout');
+Route::view('/client/register', 'register');
+Route::post('/client/verify', [ClientController::class, 'login'])->name('client.login');

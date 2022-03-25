@@ -66,6 +66,30 @@
         <div class="container-Des" id="comics_recientes">
         </div>
 
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Nombre del cómic</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p id="author">Nombre del autor: </p>
+                    <p id="tag">Tag: </p>
+                    <p id="price">Precio: </p>
+                    <p id="publisher">Editora: </p>
+                    <p id="edition">Edición: </p>
+                    <p id="description">Descripción: </p>
+                    <img id="image" src="" class="img-fluid" alt="..." width="200" heigh="200">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+                </div>
+            </div>
+        </div>
+
     <script type="text/javascript">
         $(document).ready(function() {
             getComics();
@@ -92,6 +116,24 @@
                 printComics(response, "comics_recientes");
             });
         }
+
+        function showModal(id){
+            $.ajax({
+                url: "http://localhost:8000/comic/" + id,
+                method: "GET"
+            }).done(function(res){
+                var comic = res;
+                $("#exampleModalLabel").text("Nombre del cómic: " + comic.collection.name + ": " + comic.name);
+                $("#author").text("Nombre del autor: " + comic.collection.author);
+                $("#tag").text("Tag: " + comic.tag.tag);
+                $("#price").text("Precio: " + comic.price);
+                $("#publisher").text("Editora: " + comic.collection.publisher);
+                $("#edition").text("Edición: " + comic.edition);
+                $("#description").text("Descripción: " + comic.collection.description);
+                $("#image").attr("src", comic.image);
+            });
+        }
+
         //Función para pintar las tarjetas con los datos
         function printComics(comics, space){
             comics.map(function(comic){
@@ -100,9 +142,11 @@
                         "<div class='mx auto imgBox'>" +
                             "<img src='" + comic.image +"' class='card-img-top'>" +
                             "<div class='Contenido'>" +
-                            "<p class='text-center'>" + comic.collection.name + ": " + comic.name +"</p>" +
-                            "<button type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#exampleModal'>Ver más</button>"+
-                              "<div class='bu'><button type='button' class='btn bn'><img class='d-inline-block' src='/img/shopcart2.png' width='40px' height='40px' alt='carrito'> Agregar a carrito</button></div>" +
+                                "<p class='text-center'>" + comic.collection.name + ": " + comic.name +"</p>" +
+                                "<div class='bu'>"+
+                                    "<button type='button' class='btn bn'><img class='d-inline-block' src='/img/shopcart2.png' width='40px' height='40px' alt='carrito'></button>"+
+                                    "<a href='javascript:void(0)' onclick='showModal(" + comic.id + ")' type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#exampleModal'>Ver más</a>"+
+                                "</div>" +
                             "</div>" +
                         "</div>" +
                     "</div>"
@@ -115,26 +159,3 @@
 </body>
 </html>
 @endsection
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Nombre del cómic</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <p id="author">Nombre del autor: </p>
-        <p id="state">Disponible: </p>
-        <p id="tag">Tag: </p>
-        <p id="price">Precio: </p>
-        <p id="editor">Editora: </p>
-        <p id="edition">Edición: </p>
-        <p id="description">Descripción: </p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
