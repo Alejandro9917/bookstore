@@ -1,7 +1,47 @@
-.padre{
-  display: flex;
+body {
+  overflow: hidden;
+}
+
+.container{
   justify-content: center;
   align-items: center;
   padding-top: 300px;
+  font-family: Montserrat-regular;
 }
+.row .col-md-8 .card {
+  border-color: #7D1128;
+}
+#email:hover {
+  border-color: #7D1128;
+}
+#email:focus{
+  border-color: #7D1128;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset, 0px 0px 8px rgba(125, 17, 40);
+}
+
+#password:hover {
+  border-color: #7D1128;
+}
+#password:focus{
+  border-color: #7D1128;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset, 0px 0px 8px rgba(125, 17, 40);
+}
+
+.row .col-md-8 button {
+  background-color: #7D1128;
+  border-color: #7D1128;
+  display: block;
+  margin: 0 auto -15px 30px;
+}
+.row .col-md-8 button:hover{
+  background-color: #F1DEDE;
+  color: #7D1128;
+  border-color: #F1DEDE;
+}
+.row .col-md-8 button:focus{
+  border-color: #7D1128;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset, 0px 0px 8px rgba(125, 17, 40);
+}
+
+
 
