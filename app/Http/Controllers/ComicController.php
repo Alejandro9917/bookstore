@@ -14,6 +14,12 @@ class ComicController extends Controller
         return response()->json($comics);
     }
 
+    public function getComic($id){
+        $comics = Comic::where('id', $id)->orderBy('collection_id', 'asc')->first()->load(['collection', 'tag']);
+
+        return response()->json($comics);
+    }
+
     public function recentCommics()
     {
         $comics = Comic::orderBy('id', 'desc')->take(4)->get()->load(['collection', 'tag']);
