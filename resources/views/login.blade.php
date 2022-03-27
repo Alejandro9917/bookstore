@@ -21,6 +21,7 @@
     <div class="row">
       <div class="col-md-6">
         <div class="card-body">
+          Holo
           <form method="POST" action="{{ route('client.login') }}">
               @csrf
 

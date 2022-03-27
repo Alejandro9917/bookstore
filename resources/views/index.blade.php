@@ -144,7 +144,7 @@
                             "<div class='Contenido'>" +
                                 "<p class='text-center'>" + comic.collection.name + ": " + comic.name +"</p>" +
                                 "<div class='bu'>"+
-                                    "<button type='button' class='btn bn'><img class='d-inline-block' src='/img/shopcart2.png' width='40px' height='40px' alt='carrito'></button>"+
+                                    "<a href='http://localhost:8000/purchases/add/" + comic.id + "/" + {{ Session::get('client')->id }} + "' type='button' class='btn bn'><img class='d-inline-block' src='/img/shopcart2.png' width='40px' height='40px' alt='carrito'></a>"+
                                     "<a href='javascript:void(0)' onclick='showModal(" + comic.id + ")' type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#exampleModal'>Ver más</a>"+
                                 "</div>" +
                             "</div>" +

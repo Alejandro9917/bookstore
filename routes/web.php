@@ -6,7 +6,7 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\ComicController;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\PurcharseController;
+use App\Http\Controllers\PuercharseController;
 use App\Http\Controllers\TagController;
 
 /*
@@ -33,6 +33,13 @@ Route::get('/tags', [TagController::class, 'index']);
 
 //Rutas para api de collections
 Route::get('/collections', [CollectionController::class, 'index']);
+
+//Rutas para retornar la api de compras
+Route::get('/purchases/{clientId}', [PuercharseController::class, 'getPurchasesByClient']);
+Route::get('/purchases/add/{comicId}/{clientId}', [PuercharseController::class, 'addPurchase']);
+Route::get('/purchases/delete/{id}', [PuercharseController::class, 'deletePurchase']);
+Route::get('/purchases/completeDelete/{client_id}', [PuercharseController::class, 'deletePurchaseByClient']);
+Route::get('/purchases/complete/{client_id}', [PuercharseController::class, 'completePurchase']);
 
 //Rutas para retornar las views
 Route::view('/', 'index');
