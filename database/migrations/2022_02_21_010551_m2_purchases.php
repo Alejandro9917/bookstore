@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('client_id');
             $table->unsignedBigInteger('comic_id');
-            $table->boolean('state');
+            $table->boolean('state'); //1: añadido a carrito, 2: compra ya realizada
             $table->timestamps();
 
             $table->foreign('client_id')->references('id')->on('clients');

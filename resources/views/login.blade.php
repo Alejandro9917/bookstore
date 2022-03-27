@@ -21,7 +21,6 @@
     <div class="row">
       <div class="col-md-6">
         <div class="card-body">
-        <legend class="legend">Log In</legend>
           <form method="POST" action="{{ route('client.login') }}">
               @csrf
               <div class="row mb-3">

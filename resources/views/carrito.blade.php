@@ -1,3 +1,6 @@
+@extends('navbar')
+
+@section('content')
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -12,10 +15,6 @@
   </head>
 
   <body>
-      <!--Barra de navegación-->
-      <?php
-        include_once("recursos/navbar.php");
-    ?>
 
     <!--A partir de acá comienza el cuerpo de la página-->
     <main>
@@ -69,9 +68,7 @@
 
     </main>
      <!--footer-->
-     <?php
-        include_once("recursos/footer.php");
-    ?>
+@include('footer')
 </body>
-</script>
 </html>
+@endsection
