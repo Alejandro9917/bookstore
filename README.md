@@ -34,6 +34,7 @@
  ![Logo](https://i.imgur.com/xuB1IDc.png)
 
 ### Mockups
+ [Logo](https://imgur.com/a/QQhPedD)
 
 ### Base de datos
  ![Logo](https://i.imgur.com/axZ3amA.png)
