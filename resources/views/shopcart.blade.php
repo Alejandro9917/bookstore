@@ -48,7 +48,7 @@
         <button class="btn bn-Procesar" id="total">Total compra</button>
     </div>
     @else
-
+        <script>window.location.href = "http://localhost:8000/client/login";</script>
     @endif
 
 @include('footer')
@@ -58,6 +58,7 @@
             getPurchases();
         });
 
+        @if (Session::exists('client'))
         function getPurchases(){
             $.ajax({
                 url: "http://localhost:8000/purchases/{{ Session::get('client')->id }}",
@@ -85,6 +86,9 @@
 
             $("#total").text("Total compra: " + total);
         }
+        @else
+
+        @endif
     </script>
 </body>
 </html>
