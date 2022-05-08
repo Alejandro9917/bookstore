@@ -11,6 +11,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/css/estilosindex.css">
     <link rel="stylesheet" href="/css/P.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <title>Productos-Bookstore</title>
 </head>
 <body>
@@ -29,76 +30,71 @@
                 </div>
             </div>
    <div class="col-lg-9">
-    <div class="row py-3 row-cols-1 row-cols-md-4 g-4">
-        <div class="col">
-            <div class="card">
-                <div class="mx auto imgBox">
-                    <img src="/img/LIBRO 1.png"  alt="Libro1" class="card-img-top ">
-                </div>
-            </div>
-         </div>
-         <div class="col">
-            <div class="card">
-                <div class="mx auto imgBox">
-                    <img src="/img/LIBRO 2.jpg"  alt="Libro2" class="card-img-top ">
-                </div>
-            </div>
-         </div>
-         <div class="col">
-            <div class="card">
-                <div class="mx auto imgBox">
-                    <img src="/img/LIBRO 1.png"  alt="Libro1" class="card-img-top ">
-                </div>
-            </div>
-         </div>
-         <div class="col">
-            <div class="card">
-                <div class="mx auto imgBox">
-                    <img src="/img/LIBRO 2.jpg"  alt="Libro2" class="card-img-top ">
-                </div>
-            </div>
-         </div>
-         <div class="col">
-            <div class="card">
-                <div class="mx auto imgBox">
-                    <img src="/img/LIBRO 1.png"  alt="Libro1" class="card-img-top ">
-                </div>
-            </div>
-         </div>
-         <div class="col">
-            <div class="card">
-                <div class="mx auto imgBox">
-                    <img src="/img/LIBRO 2.jpg"  alt="Libro2" class="card-img-top ">
-                </div>
-            </div>
-         </div>
-         <div class="col">
-            <div class="card">
-                <div class="mx auto imgBox">
-                    <img src="/img/LIBRO 1.png"  alt="Libro1" class="card-img-top ">
-                </div>
-            </div>
-         </div>
-         <div class="col">
-            <div class="card">
-                <div class="mx auto imgBox">
-                    <img src="/img/LIBRO 2.jpg"  alt="Libro2" class="card-img-top ">
-                </div>
-            </div>
-         </div>
-         <nav aria-label="Page navigation example">
-            <ul class="pagination">
-              <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-              <li class="page-item"><a class="page-link" href="#">1</a></li>
-              <li class="page-item"><a class="page-link" href="#">2</a></li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
-              <li class="page-item"><a class="page-link" href="#">Next</a></li>
-            </ul>
-          </nav>
+    <div class="row py-3 row-cols-1 row-cols-md-4 g-4" id="comics">
+        
     </div>
 </div>
 </div>
 </div>
+
+<script type="text/javascript">
+        $(document).ready(function() {
+            getComics();
+        });
+
+        //Función para obtener los datos de las comics
+        function getComics(){
+            $.ajax({
+                url: "http://localhost:8000/comics",
+                method: "GET"
+            }).done(function(res){
+                var response = res;
+                printComics(response, "comics");
+            });
+        }
+
+        function showModal(id){
+            $.ajax({
+                url: "http://localhost:8000/comic/" + id,
+                method: "GET"
+            }).done(function(res){
+                var comic = res;
+                $("#exampleModalLabel").text("Nombre del cómic: " + comic.collection.name + ": " + comic.name);
+                $("#author").text("Nombre del autor: " + comic.collection.author);
+                $("#tag").text("Tag: " + comic.tag.tag);
+                $("#price").text("Precio: " + comic.price);
+                $("#publisher").text("Editora: " + comic.collection.publisher);
+                $("#edition").text("Edición: " + comic.edition);
+                $("#description").text("Descripción: " + comic.collection.description);
+                $("#image").attr("src", comic.image);
+            });
+        }
+
+        //Función para pintar las tarjetas con los datos
+        function printComics(comics, space){
+            comics.map(function(comic){
+                $("#" + space).append(
+                    "<div class='card'>" +
+                        "<div class='mx auto imgBox'>" +
+                            "<img src='" + comic.image +"' class='card-img-top'>" +
+                            "<div class='Contenido'>" +
+                                "<p class='text-center'>" + comic.collection.name + ": " + comic.name +"</p>" +
+                                "<div class='bu'>"+
+                                    @if (Session::exists('client'))
+                                    "<a href='http://localhost:8000/purchases/add/" + comic.id + "/" + {{ Session::get('client')->id }} + "' type='button' class='btn bn'><img class='d-inline-block' src='/img/shopcart2.png' width='40px' height='40px' alt='carrito'></a>"+
+                                    @else
+
+                                    @endif
+                                    "<a href='javascript:void(0)' onclick='showModal(" + comic.id + ")' type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#exampleModal'>Ver más</a>"+
+                                "</div>" +
+                            "</div>" +
+                        "</div>" +
+                    "</div>"
+                );
+            });
+        }
+    </script>
+
     @include('footer')
 </body>
 </html>
