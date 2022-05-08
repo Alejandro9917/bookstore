@@ -1,0 +1,54 @@
+.row
+{
+    background-color: #fff;
+    position: relative;
+    width: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+}
+
+.row .card
+{
+    position: relative;
+    max-width: 400px;
+    width: 180px;
+    height: 380px;
+    background-color: #fff;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 30px;
+    padding-top: 5px;
+    margin-bottom: 20px;
+    margin-left: 50px;
+    margin-right:50px;
+    display: flex;
+    flex-direction: column;
+}
+
+.row .card .imgBox
+{
+  position: relative;
+  display: block;
+  width: 185px;
+  height: 180px;
+}
+
+.card:hover
+{
+    box-shadow: 5px 5px 20px rgba(0,0,0,0.4);
+    transform: translateY(-3%);
+}
+
+.card
+{
+    width: 200px;
+}
+
+.imgBox img
+{
+    width: 170px;
+    height: 270px;
+}
