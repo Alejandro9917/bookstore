@@ -18,7 +18,7 @@
     @if (Session::exists('client'))
     <div class="detalle">
         <h5>Detalle de compra</h5>
-        <button class="btn bn-seguir " type="button"><img class="" src="img/Regre.png" alt="Seguir comprando" width="40px" height="40px" >Seguir comprando</button>
+      <a href="http://localhost:8000"> <button class="btn bn-seguir " type="button"><img class="" src="img/Regre.png" alt="Seguir comprando" width="40px" height="40px"  >Seguir comprando</button></a> 
     </div>
 
     <div class="container">
