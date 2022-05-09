@@ -18,7 +18,7 @@
 ### Documento de proyecto
  - [Documento primera fase](https://udbedu-my.sharepoint.com/:b:/g/personal/mm180363_alumno_udb_edu_sv/ERaUJlEGqPJItoYK7Z4k9E8B7HpPnxRIZwpExGUtMcsA-Q?e=Lb5AcA)
 ### Manual de usuario
- - [Manual de cliente](https://udbedu-my.sharepoint.com/:b:/g/personal/mm180363_alumno_udb_edu_sv/EXZwTRi0DNJOkAvhJ7ALQ6sBuRszV9AVWvv7D-btT7I82Q?e=jXu1Ve)
+ - [Manual de cliente](https://udbedu-my.sharepoint.com/:b:/g/personal/vd191672_alumno_udb_edu_sv/EeuYajrGBhtMjCuVVnSm1toBj7Q4FfgSdCHinUP_U4RAbg?e=tuW0x9)
 ### Manual técnico
  - [Manual de técnico](https://udbedu-my.sharepoint.com/:b:/g/personal/mm180363_alumno_udb_edu_sv/EYWUffzyEFFHg1kIv8ZG57MBqUDScrWA8jd1PW1xAq8VlA?e=fJ6Kg7)
 
