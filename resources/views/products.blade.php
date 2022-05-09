@@ -37,7 +37,7 @@
           </div>
       </div>
   </div>
-    <div class="ProdR text-center">
+
     <div class="container-fluid">
     <div class="row py-3 ">
           <!--<div class="row col-3">
@@ -56,7 +56,7 @@
     <div class="row py-3 row-cols-1 row-cols-md-4 g-4" id="comics">
 
     </div>
-</div>
+
 </div>
 </div>
 </div>
@@ -106,7 +106,7 @@
                                 "<p class='text-center'>" + comic.collection.name + ": " + comic.name +"</p>" +
                                 "<div class='bu'>"+
                                     @if (Session::exists('client'))
-                                    "<a href='http://localhost:8000/purchases/add/" + comic.id + "/" + {{ Session::get('client')->id }} + "' type='button' class='btn bn'><img class='d-inline-block' src='/img/shopcart2.png' width='40px' height='40px' alt='carrito'></a>"+
+                                    "<a href='http://localhost:8000/purchases/add/" + comic.id + "/" + {{ Session::get('client')->id }} + "' type='button' class='btn bn'><img class='d-inline-block' id='prueba' src='/img/shopcart2.png' width='40px' height='40px' alt='carrito'></a>"+
                                     @else
 
                                     @endif

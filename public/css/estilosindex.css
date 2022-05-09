@@ -14,9 +14,9 @@ body {
 
 #titlenav {
     font-family: Montserrat-regular;
-    
+
     font-size: 36px;
-   
+
 }
 
 .navbar-nav .nav-item .nav-link {
@@ -60,7 +60,7 @@ input #imgbuscar{
     position: relative;
     top: 1px;
     margin-left: auto;
-    
+
 }
 
 .navbar-light .navbar-toggler {
@@ -77,7 +77,7 @@ input #imgbuscar{
 }
 
 /*COROUSEL*/
-.carousel-control-prev .carousel-control-prev-icon 
+.carousel-control-prev .carousel-control-prev-icon
 {
    background-color:#C41E3D;
 }
@@ -138,7 +138,7 @@ input #imgbuscar{
  font-family: Montserrat-regular;
 }
 
-.container-Des 
+.container-Des
 {
     background-color: #fff;
     position: relative;
@@ -165,7 +165,7 @@ input #imgbuscar{
   margin-right:50px;
   display: flex;
   flex-direction: column;
-  
+
 }
 
 .container-Des  .card .imgBox
@@ -176,7 +176,7 @@ input #imgbuscar{
   height: 180px;
 }
 
-.container-Des .card 
+.container-Des .card
 {
 width: 180px;
 }
@@ -203,7 +203,7 @@ transform: translateY(-3%);
   margin-top: 10px;
   margin-bottom: 5px;
   font-family: Montserrat-regular;
-  
+
 }
 
 .bn
@@ -221,6 +221,10 @@ transform: translateY(-3%);
 {
 width: 20px;
 height: 20px;
+
+}
+.bn{
+  margin-right: 20px;
 }
 
 .bu
